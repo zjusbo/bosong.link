@@ -43,9 +43,8 @@
   # no record was found.
   function fetchOriginalUrl($short_url) {
 	  $pdo = new PDO('mysql:host=localhost;dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-
 	  $stm = $pdo->prepare('SELECT original_url FROM url WHERE short_url = :short_url AND is_deleted = false');
-	  $stm->bindParam('short_url', $short_url, PDO::PARAM_STR);
+	  $stm->bindParam(':short_url', $short_url, PDO::PARAM_STR);
 	  $stm->execute();
 	  $row = $stm->fetch(PDO::FETCH_ASSOC);
       return isset($row['original_url'])? $row['original_url']: '';
