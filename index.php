@@ -3,9 +3,6 @@
   require_once(__ROOT__.'/env.php');
   require_once(__ROOT__.'/utils.php');
 
-  # set to true to print out all php error log
-  define('DEBUG', true);
-  
   define('URL_PARAM', 'url');
 
   if (DEBUG) {
