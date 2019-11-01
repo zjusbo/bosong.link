@@ -42,7 +42,12 @@
   # returns the original url found in DB. Empty string is returned if
   # no record was found.
   function fetchOriginalUrl($short_url) {
-	  $pdo = new PDO('mysql:host=localhost;dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+	  try{
+	  	$pdo = new PDO('mysql:host=localhost;dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+	  } catch(PDOException $e) {
+	  	# TODO: log it and return user friendly error message
+	  	throw new PDOException($e->getMessage(), (int)$e->getCode());
+	  }
 
 	  $stm = $pdo->prepare('SELECT original_url FROM url WHERE short_url = :short_url AND is_deleted = false');
 	  $stm->bindParam('short_url', $short_url, PDO::PARAM_STR);
