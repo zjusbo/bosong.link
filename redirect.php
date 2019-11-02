@@ -5,12 +5,6 @@
 
   define('URL_PARAM', 'url');
 
-  if (DEBUG) {
-  	ini_set('display_errors', 1);
-  	ini_set('display_startup_errors', 1);
-  	error_reporting(E_ALL);
-  }
-
   $url = '';
   if (isset($_GET[URL_PARAM])) {
     $url = $_GET[URL_PARAM];
@@ -28,13 +22,15 @@
   function handlePostRequest($url) {
 	  if ($url !== 'edit') {
       	echo 'unsupported post API';
+	  }
+	  if (!isset($_POST["short_url"]) or !isset($_POST["original_url"])) {
+	  	echo 'short_url and original_url need to be set in post body';
+	  	exit -1;
 	  } 
 	  $short_url = $_POST["short_url"];
 	  $original_url = $_POST["original_url"];
-	  if (!isset($short_url) or !isset($original_url)) {
-	  	echo 'short_url and original_url need to be set in post body';
-	  }
-	  updateOriginalUrl($short_url, $original_url);
+	  $affectedRow = updateOriginalUrl($short_url, $original_url);
+	  echo $affectedRow;
   }
 
   function handleGetRequest($url) {

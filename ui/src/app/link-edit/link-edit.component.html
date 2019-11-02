@@ -1,0 +1,26 @@
+<h2>Create new link</h2>
+
+
+<form [formGroup]="linkEditForm" (ngSubmit)="onSubmit(linkEditForm.value)">
+<div>
+    <div for="shortUrl">
+      Short url (bosong.link/[<b>shortUrl</b>])
+    </div>
+    <input id="shortUrl" type="text" formControlName="shortUrl">
+  </div>
+
+  <div>
+    <div for="originalUrl">
+      Original url
+    </div>
+    <input id="originalUrl" type="text" formControlName="originalUrl">
+  </div>
+  <button class="button" type="submit">Create</button>
+
+</form>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
