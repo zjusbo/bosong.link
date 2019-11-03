@@ -1,8 +1,16 @@
 import { Component } from '@angular/core';
 
-import { products } from '../products';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { LinkService } from '../link.service';
+import { BehaviorSubject } from 'rxjs';
+
+
+export enum State {
+  INIT,
+  PENDING,
+  SUCCESS,
+  ERROR,
+}
 
 @Component({
   selector: 'app-link-edit',
@@ -10,9 +18,10 @@ import { LinkService } from '../link.service';
   styleUrls: ['./link-edit.component.css']
 })
 export class LinkEditComponent {
-  products = products;
-  linkEditForm;
+  linkEditForm: FormGroup;
+  store = new BehaviorSubject<State>(State.INIT);
 
+  get state(){return State;}
  constructor(
     private linkSerivce: LinkService,
     private formBuilder: FormBuilder,
@@ -21,14 +30,31 @@ export class LinkEditComponent {
       shortUrl: '',
       originalUrl: ''
     });
+    this.store.subscribe(state => {
+      switch(state) {
+        case State.PENDING:
+        case State.INIT:
+        case State.ERROR:
+          break;
+        case State.SUCCESS:
+          break;
+      }
+    })
   }
 
   onSubmit(linkEditForm) {
     var response = this.linkSerivce.edit(linkEditForm.shortUrl, linkEditForm.originalUrl);
 
-    response.subscribe(response => {
-        console.log(response)
-      }, error => console.log(error));
+    response.pipe( resp => {
+      this.store.next(State.PENDING);
+      return resp;
+    }).subscribe(response => {
+        this.store.next(State.SUCCESS);
+      }, error => {
+        this.store.next(State.ERROR);
+        console.log(error)
+      }
+      );
     
   }
 }

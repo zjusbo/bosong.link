@@ -8,13 +8,13 @@
     </div>
     <input id="shortUrl" type="text" formControlName="shortUrl">
   </div>
-
   <div>
     <div for="originalUrl">
       Original url
     </div>
     <input id="originalUrl" type="text" formControlName="originalUrl">
   </div>
+  <div *ngIf="(store | async) == state.SUCCESS"> Short link created: http://bosong.link/{{ linkEditForm.value.shortUrl }} -> {{ linkEditForm.value.originalUrl }} </div>
   <button class="button" type="submit">Create</button>
 
 </form>
