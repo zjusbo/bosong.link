@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LinkService } from '../link.service';
 import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 export enum State {
@@ -25,11 +26,17 @@ export class LinkEditComponent {
  constructor(
     private linkSerivce: LinkService,
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute
   ) {
     this.linkEditForm = this.formBuilder.group({
       shortUrl: '',
       originalUrl: ''
     });
+    this.route.queryParams.subscribe(params => {
+      this.linkEditForm.patchValue({shortUrl: params['url']});
+  });
+
+    
     this.store.subscribe(state => {
       switch(state) {
         case State.PENDING:
