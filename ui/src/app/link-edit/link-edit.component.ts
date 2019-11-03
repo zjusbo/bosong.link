@@ -34,7 +34,7 @@ export class LinkEditComponent {
     });
     // query param redirect ?url=xxx
     this.route.queryParams.subscribe(params => {
-      this.linkEditForm.patchValue({shortUrl: params.get('url')});
+      this.linkEditForm.patchValue({shortUrl: params['url']});
   });
    // Url redirect  /xxxx
     this.route.paramMap.subscribe(params => {
