@@ -17,8 +17,9 @@ import { LinkCompletedComponent } from './link-completed/link-completed.componen
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: LinkEditComponent },
-      // redirect with a shortLink prefilled
-      { path: 'redirect.php', component: LinkEditComponent }, 
+      { path: ':url', component: LinkEditComponent },
+      // for local env redirect
+      { path: '*', component: LinkEditComponent },
    ])
   ],
   declarations: [
