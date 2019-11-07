@@ -4,6 +4,11 @@
 
 http://bosong.link/design
 
+
+### Services
+
+Auto deployed by app.buddy.works
+
 ### TODOs
 
 - Url validation
