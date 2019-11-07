@@ -1,4 +1,14 @@
-env.php
-config.php
+# server config files
+config/*
+
+# hidden files
 .*
+
+# angular dist files
+*.js
+*.html
+*.css
+*.txt
+
+# local deployment script
 deploy.sh
