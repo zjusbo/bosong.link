@@ -1,6 +1,6 @@
 <?php  
   define('__ROOT__', dirname(__FILE__));
-  require_once(__ROOT__.'/env.php');
+  require_once(__ROOT__.'/config/env.php');
   require_once(__ROOT__.'/utils.php');
 
   define('URL_PARAM', 'url');
