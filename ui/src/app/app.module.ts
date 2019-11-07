@@ -8,7 +8,6 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { LinkEditComponent } from './link-edit/link-edit.component';
 import { LinkService } from './link.service';
 import { HttpClientModule } from '@angular/common/http';
-import { LinkCompletedComponent } from './link-completed/link-completed.component';
 
 @NgModule({
   imports: [
@@ -26,7 +25,6 @@ import { LinkCompletedComponent } from './link-completed/link-completed.componen
     AppComponent,
     TopBarComponent,
     LinkEditComponent,
-    LinkCompletedComponent,
   ],
   bootstrap: [ AppComponent ],
   providers: [LinkService]
