@@ -1,4 +1,6 @@
-## Short Url Service
+## Short Url Service (DEPRECATED)
+
+This is the V1 shortlink service built in LAMP stack. It is deprecated and replaced by the MEAN stack service at https://github.com/zjusbo/shortlink
 
 ### Design doc
 
